@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="basic"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+    <requiredProperties>
+        <requiredProperty key="contextRoot"/>
+        <requiredProperty key="microservicePort"/>
+        <requiredProperty key="microserviceGroupName"/>
+        <requiredProperty key="microserviceName"/>
+        <requiredProperty key="microserviceUserName"/>
+        <requiredProperty key="cloudConfigEnabled"/>
+    </requiredProperties>
+		
+  <fileSets>
+  	<!-- .gitignore is separated as it is not filtered -->
+	<fileSet encoding="UTF-8">
+		<directory></directory>
+		<includes>
+			<include>.gitignore</include>
+		</includes>
+	</fileSet>
+	<!-- feature files not filtered, though diff folder to .gitignore -->
+	<fileSet encoding="UTF-8">
+		<directory>src/test/resources/features</directory>
+		<includes>
+			<include>*.feature</include>
+		</includes>
+	</fileSet>
+	<!-- testjar profile dependency files not filtered -->
+	<fileSet encoding="UTF-8">
+		<directory>src/main/assembly</directory>
+		<includes>
+			<include>*.xml</include>
+		</includes>
+	</fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>*.xml</include>
+        <include>*.conf</include>
+        <include>*.sh</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>src/test/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/main/resources</directory>
+      <includes>
+        <include>**/*.yaml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/test/resources</directory>
+      <includes>
+        <include>**/*.yaml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>config</directory>
+      <includes>
+        <include>**/*.yaml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>

@@ -1,0 +1,9 @@
+# See also the Cloud Config Server and the bootstrap config packaged into the JAR at /src/main/resources
+
+# In puppet-managed environments this will be a ./healthcheck/keepalive file. We use the pom here for convenience as it already exists.
+keepalive:
+  location: pom.xml
+
+spring:
+  profiles:
+    active: dev

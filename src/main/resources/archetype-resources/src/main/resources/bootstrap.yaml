@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: ${microserviceGroupName}-${microserviceName}
+  cloud:
+    config:
+      enabled: ${cloudConfigEnabled}
+      username: user
+
+info:
+  build:
+    version: release/@project.version@
+
+server:
+  contextPath: /${contextRoot}
+  port: ${microservicePort}
+
+endpoints:
+  shutdown:
+    enabled: true
+
+health:
+  config:
+    enabled: false
+
+appsecurity:
+  admin:
+    username: admin
+    password: password
+  user:
+    username: user
+    password: password
+
+defaultCorrelationId: "[unspecified]"
+
+keepalive:
+  location: /opt/app/${microserviceGroupName}/${microserviceName}/live/service/healthcheck/keepalive
+
+graphite:
+  host: graphite
+  port: 2003
+
+logging:
+  path: ./logs

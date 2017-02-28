@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-parent</artifactId>
+		<version>Brixton.RELEASE</version>
+	</parent>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+
+	<name>${microserviceGroupName} ${microserviceName}</name>
+	<description>${microserviceGroupName} ${microserviceName} microservice project</description>
+
+	<organization>
+		<name>Capgemini</name>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>Our release repo</name>
+			<url>http://artifactory.capgemini-psdu.com/artifactory/libs-release-local</url>
+		</repository>
+		<!-- Disallow deploy of snapshot versions -->
+	</distributionManagement>
+
+	<!-- Add dependencies here that won't be automatically inherited by child modules. -->
+	<!-- Use to centrally control dependency versions whilst allowing child modules to explicitly choose whether to inherit the dependency. -->
+	<properties>
+		<!-- Alphabetical order -->
+		<common.exception.handling.version>2.7</common.exception.handling.version>
+		<context-root>${contextRoot}</context-root>
+		<cukes.version>1.2.4</cukes.version>
+		<json-schema-validator.version>2.2.3</json-schema-validator.version>
+		<java.version>1.7</java.version>
+		<mongo.driver.version>2.12.3</mongo.driver.version>
+		<powermock.version>1.6.3</powermock.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<rabbit.client.version>3.4.2</rabbit.client.version>
+		<start-class>${package}.Application</start-class>
+		<swagger.springmvc.version>1.0.2</swagger.springmvc.version>
+		<swagger.springmvc-ui.version>0.2</swagger.springmvc-ui.version>
+		<tomcat.version>8.0.32</tomcat.version>
+	</properties>
+
+	<!-- Add dependencies here that won't be automatically inherited by all child modules. -->
+	<!-- Use to centrally control dependency versions whilst allowing child modules to explicitly choose whether to inherit the dependency. -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.rabbitmq</groupId>
+				<artifactId>amqp-client</artifactId>
+				<version>${rabbit.client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongo-java-driver</artifactId>
+				<version>${mongo.driver.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Add dependencies here that will be automatically inherited by all child modules. -->
+	<!-- Use to centrally control dependency versions that will be inherited by all child -->
+	<!-- child modules. -->
+	<dependencies>
+
+		<!-- Compile dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-graphite</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangofactory</groupId>
+			<artifactId>swagger-springmvc</artifactId>
+			<version>${swagger.springmvc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.fge</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${json-schema-validator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.capgemini</groupId>
+			<artifactId>boot-http-logger</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.capgemini</groupId>
+			<artifactId>boot-rest-exception-handling</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+                <dependency>
+                        <groupId>com.capgemini</groupId>
+                        <artifactId>boot-swagger-ui</artifactId>
+                        <version>1.0.0</version>
+                </dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Cucumber dependencies -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cukes.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cukes.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cukes.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cukes.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- End of Cucumber dependencies -->
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>debug</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</jvmArguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>testjar</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>3.0.2</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>test-jar</goal>
+								</goals>
+								<configuration></configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/test-jar-with-dependencies.xml</descriptor>
+							</descriptors>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>unix</id>
+			<activation>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>rpm-maven-plugin</artifactId>
+						<version>2.1</version>
+						<executions>
+							<execution>
+								<id>build-rpm</id>
+								<goals>
+									<goal>attached-rpm</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<name>${microserviceGroupName}-${microserviceName}</name>
+							<group>Applications/Internet</group>
+							<mappings>
+								<mapping>
+									<directory>/opt/app/${microserviceGroupName}/${microserviceName}/live/service</directory>
+									<filemode>755</filemode>
+									<username>${microserviceUserName}</username>
+									<groupname>${microserviceGroupName}</groupname>
+									<sources>
+										<source>
+											<location>target/${project.build.finalName}.jar</location>
+											<destination>${microserviceName}.jar</destination>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/app/${microserviceGroupName}/${microserviceName}/live/service</directory>
+									<filemode>755</filemode>
+									<username>${microserviceUserName}</username>
+									<groupname>${microserviceGroupName}</groupname>
+									<sources>
+										<source>
+											<location>run-${microserviceGroupName}-${microserviceName}.sh</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/etc/init/</directory>
+									<filemode>755</filemode>
+									<username>${microserviceUserName}</username>
+									<groupname>${microserviceGroupName}</groupname>
+									<sources>
+										<source>
+											<location>${microserviceGroupName}-${microserviceName}.conf</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/app/${microserviceGroupName}/${microserviceName}/live/config</directory>
+									<filemode>755</filemode>
+									<username>${microserviceUserName}</username>
+									<groupname>${microserviceGroupName}</groupname>
+									<sources>
+										<source>
+											<location>logback.xml</location>
+										</source>
+									</sources>
+								</mapping>
+							</mappings>
+							<postinstallScriptlet>
+								<scriptFile>run-${microserviceGroupName}-${microserviceName}.sh</scriptFile>
+							</postinstallScriptlet>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<!-- Add plugins here that won't be automatically inherited by child modules. -->
+		<!-- Use to centrally control plugin versions whilst allowing child modules to explicitly choose whether to inherit the plugin. -->
+		<pluginManagement>
+		</pluginManagement>
+
+		<!-- Add plugins here that will be automatically inherited by all child modules. -->
+		<!-- Use to centrally control plugin versions that will be inherited by all child modules. -->
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<configuration>
+					<failOnNoGitDirectory>false</failOnNoGitDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

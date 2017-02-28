@@ -1,0 +1,63 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-5level %-30([%d] [%thread]) %logger{36}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${symbol_dollar}{logging.path}/boot-error.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{logging.path}/boot-error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+		<encoder>
+			<pattern>%-5level %-30([%d] [%thread]) %logger{36}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="application" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${symbol_dollar}{logging.path}/boot-application.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{logging.path}/boot-application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+		<encoder>
+			<pattern>%-5level %-30([%d] [%thread]) %logger{36}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.capgemini" level="INFO" additivity="false">
+		<appender-ref ref="error" />
+		<appender-ref ref="application" />
+	</logger>
+	
+	<logger name="com.capgemini.psdu.${microserviceGroupName}.Application" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="com.capgemini.psdu.httplogger" level="OFF">
+		<appender-ref ref="error" />
+		<appender-ref ref="application" />
+	</logger>
+	
+	<root level="INFO">
+		<appender-ref ref="error"/>
+		<appender-ref ref="application"/>
+	</root>
+
+</configuration>

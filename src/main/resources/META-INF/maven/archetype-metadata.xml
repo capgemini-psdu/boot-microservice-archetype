@@ -4,11 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	
     <requiredProperties>
-        <requiredProperty key="contextRoot"/>
         <requiredProperty key="microservicePort"/>
         <requiredProperty key="microserviceGroupName"/>
-        <requiredProperty key="microserviceName"/>
-        <requiredProperty key="microserviceUserName"/>
         <requiredProperty key="cloudConfigEnabled"/>
     </requiredProperties>
 		

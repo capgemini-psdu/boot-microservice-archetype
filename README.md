@@ -29,15 +29,15 @@ For the **microserviceGroupName** enter the highest pacakge level e.g. for `com.
 For the **microservicePort** enter the HTTP port that the app should listen on.
 
 Please note since version 1.0.2 of this archetype the following applies:
-{
-    The **artifactId** is now used for (inclusive of artifactId):[**microserviceName**,**microserviceUserName**,**contextRoot**]. 
-    
-    This means that where instances of these properties use to exist in the pom.xml etc, have no been replaced physically with **artifactId**.
 
-    This means the **artifactId** will be the HTTP context root for the app.
+-The **artifactId** is now used for (inclusive of artifactId):[**microserviceName**,**microserviceUserName**,**contextRoot**]. 
     
-    If the user wishes to amend instances where microserviceUserName used to reside within the pom.xml. the following advice applies --> **microserviceUserName** enter the Linux user under which the microservice will run and which will own the directories to which the microservice will be installed - don't confuse it with the HTTP basic auth users (that are hard coded into the archetype).
-}
+-This means that where instances of these properties used to exist in the pom.xml etc, have now been replaced physically with **artifactId**.
+
+-This means the **artifactId** will be the HTTP context root for the app.
+    
+-If the user wishes to amend instances where microserviceUserName used to reside within the pom.xml, The following advice applies --> **microserviceUserName** enter the Linux user under which the microservice will run and which will own the directories to which the microservice will be installed - don't confuse it with the HTTP basic auth users (that are hard coded into the archetype).
+
 
 For the **cloudConfigEnabled** use true or false depending on whether you want to connect to a Spring Cloud Config Server to serve the microservice's YAML configuration.
 

@@ -6,15 +6,15 @@
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-parent</artifactId>
-		<version>Brixton.RELEASE</version>
+		<version>Camden.SR6</version>
 	</parent>
 
 	<groupId>${groupId}</groupId>
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
 
-	<name>${microserviceGroupName} ${microserviceName}</name>
-	<description>${microserviceGroupName} ${microserviceName} microservice project</description>
+	<name>${microserviceGroupName} ${artifactId}</name>
+	<description>${microserviceGroupName} ${artifactId} microservice project</description>
 
 	<organization>
 		<name>Capgemini</name>
@@ -42,10 +42,10 @@
 	<properties>
 		<!-- Alphabetical order -->
 		<common.exception.handling.version>2.7</common.exception.handling.version>
-		<context-root>${contextRoot}</context-root>
+		<context-root>${artifactId}</context-root>
 		<cukes.version>1.2.4</cukes.version>
 		<json-schema-validator.version>2.2.3</json-schema-validator.version>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<mongo.driver.version>2.12.3</mongo.driver.version>
 		<powermock.version>1.6.3</powermock.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,7 +53,6 @@
 		<start-class>${package}.Application</start-class>
 		<swagger.springmvc.version>1.0.2</swagger.springmvc.version>
 		<swagger.springmvc-ui.version>0.2</swagger.springmvc-ui.version>
-		<tomcat.version>8.0.32</tomcat.version>
 	</properties>
 
 	<!-- Add dependencies here that won't be automatically inherited by all child modules. -->
@@ -128,12 +127,12 @@
 		<dependency>
 			<groupId>com.capgemini</groupId>
 			<artifactId>boot-http-logger</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.capgemini</groupId>
 			<artifactId>boot-rest-exception-handling</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1</version>
 		</dependency>
                 <dependency>
                         <groupId>com.capgemini</groupId>
@@ -266,47 +265,47 @@
 							</execution>
 						</executions>
 						<configuration>
-							<name>${microserviceGroupName}-${microserviceName}</name>
+							<name>${microserviceGroupName}-${artifactId}</name>
 							<group>Applications/Internet</group>
 							<mappings>
 								<mapping>
-									<directory>/opt/app/${microserviceGroupName}/${microserviceName}/live/service</directory>
+									<directory>/opt/app/${microserviceGroupName}/${artifactId}/live/service</directory>
 									<filemode>755</filemode>
-									<username>${microserviceUserName}</username>
+									<username>${artifactId}</username>
 									<groupname>${microserviceGroupName}</groupname>
 									<sources>
 										<source>
 											<location>target/${project.build.finalName}.jar</location>
-											<destination>${microserviceName}.jar</destination>
+											<destination>${artifactId}.jar</destination>
 										</source>
 									</sources>
 								</mapping>
 								<mapping>
-									<directory>/opt/app/${microserviceGroupName}/${microserviceName}/live/service</directory>
+									<directory>/opt/app/${microserviceGroupName}/${artifactId}/live/service</directory>
 									<filemode>755</filemode>
-									<username>${microserviceUserName}</username>
+									<username>${artifactId}</username>
 									<groupname>${microserviceGroupName}</groupname>
 									<sources>
 										<source>
-											<location>run-${microserviceGroupName}-${microserviceName}.sh</location>
+											<location>run-${microserviceGroupName}-${artifactId}.sh</location>
 										</source>
 									</sources>
 								</mapping>
 								<mapping>
 									<directory>/etc/init/</directory>
 									<filemode>755</filemode>
-									<username>${microserviceUserName}</username>
+									<username>${artifactId}</username>
 									<groupname>${microserviceGroupName}</groupname>
 									<sources>
 										<source>
-											<location>${microserviceGroupName}-${microserviceName}.conf</location>
+											<location>${microserviceGroupName}-${artifactId}.conf</location>
 										</source>
 									</sources>
 								</mapping>
 								<mapping>
-									<directory>/opt/app/${microserviceGroupName}/${microserviceName}/live/config</directory>
+									<directory>/opt/app/${microserviceGroupName}/${artifactId}/live/config</directory>
 									<filemode>755</filemode>
-									<username>${microserviceUserName}</username>
+									<username>${artifactId}</username>
 									<groupname>${microserviceGroupName}</groupname>
 									<sources>
 										<source>
@@ -316,7 +315,7 @@
 								</mapping>
 							</mappings>
 							<postinstallScriptlet>
-								<scriptFile>run-${microserviceGroupName}-${microserviceName}.sh</scriptFile>
+								<scriptFile>run-${microserviceGroupName}-${artifactId}.sh</scriptFile>
 							</postinstallScriptlet>
 						</configuration>
 					</plugin>

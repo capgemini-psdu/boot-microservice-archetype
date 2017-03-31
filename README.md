@@ -9,32 +9,25 @@ New microservices should be created via the Maven archetype. Firstly you should 
 Then it is as simple as a single command to create the new microservice project (substituting in the appropriate values - INCLUDING THE LATEST VERSION OF THE ARCHETYPE), for example:
 
 ```
-mvn archetype:generate \
-  -DarchetypeGroupId=com.capgemini \
-  -DarchetypeArtifactId=boot-microservice-archetype \
-  -DarchetypeVersion=1.0.0 \
-  -DgroupId=com.capgemini.demo \
-  -DartifactId=example-service \
-  -DcontextRoot=example \
-  -DmicroservicePort=8888 \
-  -DmicroserviceGroupName=demo \
-  -DmicroserviceName=example-service \
-  -DmicroserviceUserName=example \
-  -DcloudConfigEnabled=false \
-  -DinteractiveMode=false
+mvn archetype:generate
+-DarchetypeGroupId=com.capgemini
+-DarchetypeArtifactId=boot-microservice-archetype
+-DarchetypeVersion=1.0.2
+-DgroupId=com.capgemini.demo
+-DartifactId=example-service
+-DmicroservicePort=8888
+-DmicroserviceGroupName=demo
+-DcloudConfigEnabled=false
+-DinteractiveMode=false
 ```
 
 For the **groupId** enter your top-level Java package e.g. `com.capgemini.customers`
 
-For the **contextRoot** enter the HTTP context root for the app.
-
-For the **microserviceGroupName** enter the highest pacakge level e.g. for `com.capgemini.customers` use `customers`
+For the **microserviceGroupName** enter the highest package level e.g. for `com.capgemini.customers` use `customers`
 
 For the **microservicePort** enter the HTTP port that the app should listen on.
 
-For the **artifactId** and **microserviceName** (these should be the same) choose an appropriate microservice name to distinguish its logs etc.
-
-For the **microserviceUserName** enter the Linux user under which the microservice will run and which will own the directories to which the microservice will be installed - don't confuse it with the HTTP basic auth users (that are hard coded into the archetype).
+For the **artifactId** enter the name of the microservice. This will also be used to set the microservice's HTTP context root and the O/S username under which the microservice runs.
 
 For the **cloudConfigEnabled** use true or false depending on whether you want to connect to a Spring Cloud Config Server to serve the microservice's YAML configuration.
 

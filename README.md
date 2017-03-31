@@ -9,16 +9,16 @@ New microservices should be created via the Maven archetype. Firstly you should 
 Then it is as simple as a single command to create the new microservice project (substituting in the appropriate values - INCLUDING THE LATEST VERSION OF THE ARCHETYPE), for example:
 
 ```
-mvn archetype:generate
--DarchetypeGroupId=com.capgemini
--DarchetypeArtifactId=boot-microservice-archetype
--DarchetypeVersion=1.0.2
--DgroupId=com.capgemini.demo
--DartifactId=example-service
--DmicroservicePort=8888
--DmicroserviceGroupName=demo
--DcloudConfigEnabled=false
--DinteractiveMode=false
+mvn archetype:generate \
+  -DarchetypeGroupId=com.capgemini \
+  -DarchetypeArtifactId=boot-microservice-archetype \
+  -DarchetypeVersion=1.0.2 \
+  -DgroupId=com.capgemini.demo \
+  -DartifactId=example-service \
+  -DmicroservicePort=8888 \
+  -DmicroserviceGroupName=demo \
+  -DcloudConfigEnabled=false \
+  -DinteractiveMode=false
 ```
 
 For the **groupId** enter your top-level Java package e.g. `com.capgemini.customers`

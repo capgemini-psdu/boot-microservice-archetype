@@ -31,14 +31,9 @@ For the **artifactId** enter the name of the microservice. This will also be use
 
 For the **cloudConfigEnabled** use true or false depending on whether you want to connect to a Spring Cloud Config Server to serve the microservice's YAML configuration.
 
-# Dependencies used with versions for the archetype
+# Accessing swagger:
 
-* Spring boot - 2.0.1
-* Spring cloud - Finchley RC1
-* Springfox swagger - 2.9.0
-* Rabbitmq - 3.4.1
-* mongo java driver - 3.7.0
-* powermock - 1.6.3
+http://localhost:8888/documentation/swagger-ui.html
 
 # Before you push the changes in Version control
 

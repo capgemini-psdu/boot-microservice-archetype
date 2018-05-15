@@ -31,6 +31,15 @@ For the **artifactId** enter the name of the microservice. This will also be use
 
 For the **cloudConfigEnabled** use true or false depending on whether you want to connect to a Spring Cloud Config Server to serve the microservice's YAML configuration.
 
+# Dependencies used with versions for the archetype
+
+* Spring boot - 2.0.1
+* Spring cloud - Finchley RC1
+* Springfox swagger - 2.9.0
+* Rabbitmq - 3.4.1
+* mongo java driver - 3.7.0
+* powermock - 1.6.3
+
 # Before you push the changes in Version control
 
 If you run the above command on Windows machine, the generated files will have all the end of line characters windows encoded. Before you commit the changes in the Version control please make sure you convert them all into Unix format.

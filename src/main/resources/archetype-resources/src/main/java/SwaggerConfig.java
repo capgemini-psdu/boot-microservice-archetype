@@ -3,36 +3,32 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+import org.springframework.http.ResponseEntity;
+import com.google.common.base.Predicates;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger
+@EnableSwagger2
 public class SwaggerConfig {
 
-	private SpringSwaggerConfig springSwaggerConfig;
-
-	@Autowired
-	public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-		this.springSwaggerConfig = springSwaggerConfig;
-	}
-
 	@Bean
-	public SwaggerSpringMvcPlugin customImplementation() {
-		return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo());
+	public Docket api() {
+		final Contact contact = new Contact("Demo Team", "demo.com", "demo@capgemini.com");
+		final ApiInfo info = new ApiInfoBuilder().title("Demo API").description("Demo API").version("1.0.0")
+				.termsOfServiceUrl("http://www.capgemini.com").contact(contact).license("License")
+				.licenseUrl("http://www.opensource.org/licenses/mit-license.php").build();
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(info).select().apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.regex("/.*")).paths(Predicates.not(PathSelectors.regex("/error"))).build()
+				.pathMapping("/").genericModelSubstitutes(ResponseEntity.class).useDefaultResponseMessages(false);
 	}
 
-	private ApiInfo apiInfo() {
-		ApiInfo apiInfo = new ApiInfo("${microserviceGroupName} APIs", "APIs for ${microserviceGroupName}",
-				"http://www.capgemini.com",
-				"donotuse@donotuse",
-				"© MIT Copyright", "http://www.opensource.org/licenses/mit-license.php");
-		return apiInfo;
-	}
 }

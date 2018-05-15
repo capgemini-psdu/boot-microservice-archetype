@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableHystrix
 @EnableHystrixDashboard
 @EnableScheduling
-@Import({ApplicationConfig.class, BootConfig.class, SwaggerConfig.class, TomcatConfig.class, SecurityConfig.class, InterceptorConfig.class })
+@Import({ApplicationConfig.class, BootConfig.class, SwaggerConfig.class, SecurityConfig.class, InterceptorConfig.class })
 public class Application {
 
 	public static void main(String[] args) {

@@ -3,8 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.cukes.integration;
 
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import ${package}.Application;
@@ -15,8 +14,8 @@ import ${package}.cukes.TestBase;
  * Contains all common methods/variables between the feature files for the 
  * integration phase only.
  */
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-@IntegrationTest
+@ContextConfiguration(classes = Application.class)
+@SpringBootTest
 public class ITestBase extends TestBase {
 
 }

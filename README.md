@@ -31,6 +31,10 @@ For the **artifactId** enter the name of the microservice. This will also be use
 
 For the **cloudConfigEnabled** use true or false depending on whether you want to connect to a Spring Cloud Config Server to serve the microservice's YAML configuration.
 
+# Accessing swagger:
+
+http://localhost:8888/documentation/swagger-ui.html
+
 # Before you push the changes in Version control
 
 If you run the above command on Windows machine, the generated files will have all the end of line characters windows encoded. Before you commit the changes in the Version control please make sure you convert them all into Unix format.

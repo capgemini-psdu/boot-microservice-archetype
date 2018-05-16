@@ -13,6 +13,12 @@ info:
 server:
   contextPath: /${artifactId}
   port: ${microservicePort}
+  tomcat:
+    accesslog:
+     enabled: true
+     directory: ./logs
+     rotate: true
+     prefix: access-log
 
 endpoints:
   shutdown:
@@ -38,6 +44,3 @@ keepalive:
 graphite:
   host: graphite
   port: 2003
-
-logging:
-  path: ./logs

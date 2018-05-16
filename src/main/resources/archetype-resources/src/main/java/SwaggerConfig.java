@@ -1,6 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
+#set($symbol_pound='#')#set($symbol_dollar='$')#set($symbol_escape='\')
 package ${package};
 
 import org.springframework.context.annotation.Bean;
@@ -22,8 +20,9 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket api() {
-		final Contact contact = new Contact("Demo Team", "demo.com", "demo@capgemini.com");
-		final ApiInfo info = new ApiInfoBuilder().title("Demo API").description("Demo API").version("1.0.0")
+		final Contact contact = new Contact("${microserviceGroupName} APIs", "demo.com", "demo@capgemini.com");
+		final ApiInfo info = new ApiInfoBuilder().title("${microserviceGroupName} APIs ")
+				.description("APIs for ${microserviceGroupName}").version("1.0.0")
 				.termsOfServiceUrl("http://www.capgemini.com").contact(contact).license("License")
 				.licenseUrl("http://www.opensource.org/licenses/mit-license.php").build();
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(info).select().apis(RequestHandlerSelectors.any())
